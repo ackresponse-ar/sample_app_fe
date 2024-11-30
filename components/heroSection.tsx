@@ -1,8 +1,10 @@
 "use client";
 import animation from "@/animations/h1.json";
+import { CallBackend } from "@/service/backend-call";
+import toast from "react-hot-toast";
 import { IoMdArrowForward } from "react-icons/io";
 import Lottie from "react-lottie-player";
-
+ 
 const LandingPage = () => {
   return (
     <div className="min-h-[100dvh] py-20 ">
@@ -23,8 +25,19 @@ const LandingPage = () => {
                 systems.
               </p>
             </section>
-            <button className="bg-green-600  text-white font-bold flex gap-3 group items-center my-5 px-10 py-3 rounded-xl duration-300 hover:px-14">
-              Get Details
+            <button
+              onClick={ async () => {
+                try {
+                  const data = await CallBackend();
+                  toast.success(data)
+                } catch (error) {
+                toast.error('Error occurred while calling backend');
+
+                }
+              }}
+              className="bg-green-600  text-white font-bold flex gap-3 group items-center my-5 px-10 py-3 rounded-xl duration-300 hover:px-14"
+            >
+              Check Backend Connection
               <IoMdArrowForward
                 size={20}
                 className="group-hover:-rotate-180 transform transition-transform duration-300"
