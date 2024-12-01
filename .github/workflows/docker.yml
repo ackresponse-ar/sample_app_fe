@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ackresponse/sample-app-fe:latest
+          tags: ackresponse/sample_app_fe:latest
