@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample-app-fe-service
+  name: sample_app_fe_service
   namespace: argocd
   labels:
-    app: sample-app-fe
+    app: sample_app_fe
 spec:
   type: LoadBalancer
   selector:
-    app: sample-app-fe
+    app: sample_app_fe
   ports:
   - protocol: TCP
     port: 80
