@@ -18,5 +18,6 @@ spec:
       containers:
       - name: sample_app_fe
         image: docker.io/ackresponse/sample_app_fe:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
