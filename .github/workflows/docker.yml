@@ -27,6 +27,8 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v2'
         with:
           version: '>= 363.0.0'
+          install_components: "gke-gcloud-auth-plugin"
+
 
       - 
         name: Connect with google console
@@ -35,17 +37,17 @@ jobs:
           project_id: "concepts-demo"
           credentials_json: ${{ secrets.NG_SA_KEY_GCLOUD }}
 
-      - name: Configure Kubernetes Cluster
-        run: |
-          gcloud container clusters get-credentials argocd-3 --region europe-west3 --project concepts-demo
+      - uses: google-github-actions/get-gke-credentials@v1
+        with:
+          cluster_name: argocd-3
+          location: europe-west3
+          project: concepts-demo
 
-  
-      # - name: Install gke-gcloud-auth-plugin
+      # - name: Configure Kubernetes Cluster
       #   run: |
-      #       sudo apt-get update
-      #       sudo apt-get install -y gke-gcloud-auth-plugin
-      #   env:
-      #       CLOUDSDK_CORE_DISABLE_PROMPTS: '1'
+      #     gcloud container clusters get-credentials argocd-3 --region europe-west3 --project concepts-demo
+
+
 
       - name: Fetch Backend IP
         id: fetch-backend-ip
