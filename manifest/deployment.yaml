@@ -22,4 +22,4 @@ spec:
         - containerPort: 3000
         env:
         - name: Backend-URL
-          value: sample-app-be-service
+          value: "http://34.142.97.85/api/backend-call"
