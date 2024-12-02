@@ -41,12 +41,7 @@ jobs:
         with:
           cluster_name: argocd-3
           location: europe-west3
-          project: concepts-demo
-
-      # - name: Configure Kubernetes Cluster
-      #   run: |
-      #     gcloud container clusters get-credentials argocd-3 --region europe-west3 --project concepts-demo
-
+          project_id: concepts-demo
 
 
       - name: Fetch Backend IP
