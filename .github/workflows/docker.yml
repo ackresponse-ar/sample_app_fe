@@ -39,8 +39,8 @@ jobs:
 
       - uses: google-github-actions/get-gke-credentials@v1
         with:
-          cluster_name: argocd-3
-          location: europe-west3
+          cluster_name: argocd-1
+          location: europe-west2
           project_id: concepts-demo
 
 
