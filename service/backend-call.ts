@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL: "http://sample-app-be.argocd.svc.cluster.local/api",
+  baseURL: "http://sample-app-be-service/api",
   timeout: 5000,
 });
 
