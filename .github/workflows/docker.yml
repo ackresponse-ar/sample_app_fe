@@ -22,6 +22,14 @@ jobs:
           username: ackresponse
           password: ${{ secrets.DCKR_PSWD }}
 
+
+      - 
+        name: Connect with google console
+        uses: "google-github-actions/auth@v2"
+        with:
+          project_id: "concepts-demo"
+          credentials_json: ${{ secrets.NG_SA_KEY_GCLOUD }}
+
       - name: Fetch Backend IP
         id: fetch-backend-ip
         run: |
