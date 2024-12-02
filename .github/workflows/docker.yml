@@ -33,7 +33,14 @@ jobs:
       - name: Configure Kubernetes Cluster
         run: |
           gcloud container clusters get-credentials argocd-3 --region europe-west3 --project concepts-demo
-          
+  
+      - name: Install gke-gcloud-auth-plugin
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y google-cloud-sdk-gke-gcloud-auth-plugin
+        env:
+            CLOUDSDK_CORE_DISABLE_PROMPTS: '1'
+            
       - name: Fetch Backend IP
         id: fetch-backend-ip
         run: |
