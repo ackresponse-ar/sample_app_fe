@@ -13,7 +13,7 @@ const LandingPage = () => {
           <div className="app-layout">
             <section className="my-4">
               <h1 className="text-[20px] text-neutral-800 md:text-[25px] lg:text-[30px] font-bold min-[1900px]:text-[40px] leading-[30px] md:leading-[42px] font-[700]">
-                Introduction Hello 123
+                Introduction
               </h1>
               <h1 className="">
                 Welcome to <span className="font-bold text-green-500">ack</span>
