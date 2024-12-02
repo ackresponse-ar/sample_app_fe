@@ -30,6 +30,10 @@ jobs:
           project_id: "concepts-demo"
           credentials_json: ${{ secrets.NG_SA_KEY_GCLOUD }}
 
+      - name: Configure Kubernetes Cluster
+        run: |
+          gcloud container clusters get-credentials argocd-3 --region europe-west3 --project concepts-demo
+          
       - name: Fetch Backend IP
         id: fetch-backend-ip
         run: |
