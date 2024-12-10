@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL: "http://app.ackresponse.com/api",
+  baseURL: "http://api.app.ackresponse.com/api",
   timeout: 5000,
 });
 
