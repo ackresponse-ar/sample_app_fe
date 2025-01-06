@@ -1,5 +1,0 @@
-piVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-namespace: team-base
-resources:
- - ../base/deployment.yaml
