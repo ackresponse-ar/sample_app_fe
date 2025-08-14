@@ -23,37 +23,37 @@ jobs:
           password: ${{ secrets.DCKR_PSWD }}
 
 
-      # - name: 'Set up Cloud SDK'
-      #   uses: 'google-github-actions/setup-gcloud@v2'
-      #   with:
-      #     version: '>= 363.0.0'
-      #     install_components: "gke-gcloud-auth-plugin"
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2'
+        with:
+          version: '>= 363.0.0'
+          install_components: "gke-gcloud-auth-plugin"
 
 
-      # - 
-      #   name: Connect with google console
-      #   uses: "google-github-actions/auth@v2"
-      #   with:
-      #     project_id: "concepts-demo"
-      #     credentials_json: ${{ secrets.NG_SA_KEY_GCLOUD }}
+      - 
+        name: Connect with google console
+        uses: "google-github-actions/auth@v2"
+        with:
+          project_id: "concepts-demo"
+          credentials_json: ${{ secrets.NG_SA_KEY_GCLOUD }}
 
-      # - uses: google-github-actions/get-gke-credentials@v1
-      #   with:
-      #     cluster_name: argocd-3
-      #     location: europe-west3
-      #     project_id: concepts-demo
+      - uses: google-github-actions/get-gke-credentials@v1
+        with:
+          cluster_name: argocd-3
+          location: europe-west3
+          project_id: concepts-demo
 
 
-      # - name: Fetch Backend IP
-      #   id: fetch-backend-ip
-      #   run: |
-      #     BACKEND_IP=$(kubectl get service sample-app-be-service -n argocd -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-      #     echo "Backend IP: $BACKEND_IP"
-      #     echo "BACKEND_IP=$BACKEND_IP" >> $GITHUB_ENV
+      - name: Fetch Backend IP
+        id: fetch-backend-ip
+        run: |
+          BACKEND_IP=$(kubectl get service sample-app-be-service -n argocd -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+          echo "Backend IP: $BACKEND_IP"
+          echo "BACKEND_IP=$BACKEND_IP" >> $GITHUB_ENV
 
-      # - name: Update Backend URL in Axios Code
-      #   run: |
-      #     sed -i "s|http://<backend-loadbalancer-ip>|http://$BACKEND_IP|g" service/backend-call.ts
+      - name: Update Backend URL in Axios Code
+        run: |
+          sed -i "s|http://<backend-loadbalancer-ip>|http://$BACKEND_IP|g" service/backend-call.ts
       -
         name: Build and push
         uses: docker/build-push-action@v6
