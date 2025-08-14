@@ -3,7 +3,7 @@ name: Push Docker Image
 on:
   push:
     branches:
-      - nepali_mela
+      - main
 
 jobs:
   docker:
