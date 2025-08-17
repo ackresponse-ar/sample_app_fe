@@ -54,6 +54,7 @@ jobs:
         with:
           context: .
           tags: ackresponse/sample-app-fe:1.9 # build the same tag you want to scan
+          load: true
           push: false # only build locally
 
       - name: List Docker Images
