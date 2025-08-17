@@ -56,6 +56,9 @@ jobs:
           tags: ackresponse/sample-app-fe:1.9 # build the same tag you want to scan
           push: false # only build locally
 
+      - name: List Docker Images
+        run: docker images | grep ackresponse/sample-app-fe || true
+
       - name: Run Trivy Scan
         uses: aquasecurity/trivy-action@0.20.0
         with:
