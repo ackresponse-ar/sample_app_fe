@@ -48,7 +48,7 @@ jobs:
       # - name: Update Backend URL in Axios Code
       #   run: |
       #     sed -i "s|http://<backend-loadbalancer-ip>|http://$BACKEND_IP|g" service/backend-call.ts
-      -
+
       - name: Build Docker Image
         uses: docker/build-push-action@v6
         with:
