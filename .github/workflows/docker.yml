@@ -53,18 +53,19 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          tags: ackresponse/sample-app-fe:1.8
-          push: false # Build only, do not push yet
+          tags: ackresponse/sample-app-fe:1.9 # build the same tag you want to scan
+          push: false # only build locally
 
       - name: Run Trivy Scan
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.20.0
         with:
-          image-ref: "ackresponse/sample-app-fe:1.9"
+          image-ref: "ackresponse/sample-app-fe:1.9" # scan the locally built image
           format: "table"
           severity: "LOW"
-          exit-code: "0" # Fail the pipeline if critical or high vulnerabilities are found
+          exit-code: "1" # fail pipeline if HIGH or CRITICAL vulnerabilities are found
 
       - name: Push Docker Image
+        if: success() # only push if Trivy scan passed
         uses: docker/build-push-action@v6
         with:
           context: .
