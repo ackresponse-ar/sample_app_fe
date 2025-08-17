@@ -3,7 +3,7 @@ name: Push Docker Image
 on:
   push:
     branches:
-      - main
+      - trivy-test
 
 jobs:
   docker:
@@ -55,9 +55,25 @@ jobs:
       #   run: |
       #     sed -i "s|http://<backend-loadbalancer-ip>|http://$BACKEND_IP|g" service/backend-call.ts
       -
-        name: Build and push
+     - name: Build Docker Image
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: true
           tags: ackresponse/sample-app-fe:1.8
+          push: false  # Build only, do not push yet
+
+      - name: Run Trivy Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'ackresponse/sample-app-fe:1.8'
+          format: 'table'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1' # Fail the pipeline if critical or high vulnerabilities are found
+          
+      - name: Push Docker Image
+        uses: docker/build-push-action@v6
+        if: success()
+        with:
+          context: .
+          tags: ackresponse/sample-app-fe:1.8
+          push: true
