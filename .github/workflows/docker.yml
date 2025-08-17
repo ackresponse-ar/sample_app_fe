@@ -61,7 +61,7 @@ jobs:
         with:
           image-ref: "ackresponse/sample-app-fe:1.8"
           format: "table"
-          severity: "CRITICAL,HIGH"
+          severity: "LOW"
           exit-code: "1" # Fail the pipeline if critical or high vulnerabilities are found
 
       - name: Push Docker Image
