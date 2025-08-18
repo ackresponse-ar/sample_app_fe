@@ -126,7 +126,6 @@ jobs:
             ## 🚨 Trivy Scan Results for `ackresponse/sample-app-fe:1.9`
             ### 📊 Vulnerability Summary  
             ${{ env.report }}
-            👉 Full JSON report is available in workflow logs.
 
       - name: Push Docker Image
         if: env.scan_status == 'success' || ( env.scan_status == 'failure' && success() )
