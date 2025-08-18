@@ -57,7 +57,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          tags: ackresponse/sample-app-fe:1.9 # build the same tag you want to scan
+          tags: ackresponse/sample-app-fe:1.10 # build the same tag you want to scan
           load: true
           push: false # only build locally
 
@@ -69,7 +69,7 @@ jobs:
         uses: aquasecurity/trivy-action@0.20.0
         continue-on-error: true
         with:
-          image-ref: "ackresponse/sample-app-fe:1.9" # scan the locally built image
+          image-ref: "ackresponse/sample-app-fe:1.10" # scan the locally built image
           format: "json"
           severity: "HIGH,CRITICAL"
           output: trivy-result.json
@@ -123,7 +123,7 @@ jobs:
           approvers: GurungDev,PratikPommeGrg # GitHub username of the approver
           issue-title: "Manual Approval Required: Trivy Scan Results"
           issue-body: |
-            ## 🚨 Trivy Scan Results for `ackresponse/sample-app-fe:1.9`
+            ## 🚨 Trivy Scan Results for `ackresponse/sample-app-fe:1.10`
             ### 📊 Vulnerability Summary  
             ${{ env.report }}
 
@@ -132,5 +132,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          tags: ackresponse/sample-app-fe:1.9
+          tags: ackresponse/sample-app-fe:1.10
           push: true
