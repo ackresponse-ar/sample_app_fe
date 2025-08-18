@@ -82,7 +82,7 @@ jobs:
           fi
 
       - name: Generate Markdown report
-        if: env.scan_status == "failure" # only generate report if Trivy scan failed
+        if: env.scan_status == 'failure' # only generate report if Trivy scan failed
         id: trivy-md
         run: |
           echo "### vulnerability Summary" > trivy-report.md
@@ -102,7 +102,7 @@ jobs:
           ' trivy-result.json >> trivy-report.md
 
       - name: Await for manual approval
-        if: env.scan_status == "failure" # only create issue if Trivy scan failed
+        if: env.scan_status == 'failure' # only create issue if Trivy scan failed
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{github.TOKEN }}
@@ -118,7 +118,7 @@ jobs:
           approvers: ackresponse-ar,GurungDev # GitHub username of the approver
 
       - name: Push Docker Image
-        if: env.scan_status == "success" || ( env.scan_status == "failure" && success() )
+        if: env.scan_status == 'success' || ( env.scan_status == 'failure' && success() )
         uses: docker/build-push-action@v6
         with:
           context: .
