@@ -61,15 +61,64 @@ jobs:
         run: docker images | grep ackresponse/sample-app-fe || true
 
       - name: Run Trivy Scan
+        id: trivy
         uses: aquasecurity/trivy-action@0.20.0
+        continue-on-error: true
         with:
           image-ref: "ackresponse/sample-app-fe:1.9" # scan the locally built image
-          format: "table"
-          severity: "LOW"
-          exit-code: "0" # fail pipeline if HIGH or CRITICAL vulnerabilities are found
+          format: "json"
+          severity: "HIGH,CRITICAL"
+          output: trivy-result.json
+          exit-code: "1" # fail pipeline if HIGH or CRITICAL vulnerabilities are found
+
+      # Check Scan Results
+      - name: Check Trivy Scan Results
+        id: check-scan
+        run: |
+          if [ "${{ steps.trivy.outcome }}" == "failure" ]; then
+            echo "scan_status=failure" >> $GITHUB_ENV
+          else
+            echo "scan_status=success" >> $GITHUB_ENV
+          fi
+
+      - name: Generate Markdown report
+        if: env.scan_status == "failure" # only generate report if Trivy scan failed
+        id: trivy-md
+        run: |
+          echo "### vulnerability Summary" > trivy-report.md
+          echo "" >> trivy-report.md
+
+          CRIT=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="CRITICAL")] | length' trivy-result.json)
+          HIGH=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="HIGH")] | length' trivy-result.json)
+          echo "- CRITICAL: $CRIT" >> trivy-report.md
+          echo "- HIGH: $HIGH" >> trivy-report.md
+          echo "" >> trivy-report.md
+
+          echo "| Severity | Package | Version | CVE | Link |" >> trivy-report.md
+          echo "|---|---|---|---|---|" >> trivy-report.md
+          jq -r '
+            .Results[]?.Vulnerabilities[]? |
+            "| \(.Severity) | \(.PkgName) | \(.InstalledVersion) | \(.VulnerabilityID) | \(.PrimaryURL) |"
+          ' trivy-result.json >> trivy-report.md
+
+      - name: Await for manual approval
+        if: env.scan_status == "failure" # only create issue if Trivy scan failed
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{github.TOKEN }}
+          title: "Trivy Scan Results"
+          summary: "Vulnerabilities found in the scan. Please review before proceeding."
+          issue-title: "Manual Approval Required: Trivy Scan Results"
+          issue-body: |
+            Trivy scan results for the Docker image `ackresponse/sample-app-fe:1.9`:
+            $(cat trivy-report.md)
+            👉 Full JSON report is available in workflow logs.
+          labels: "trivy, scan, manual-approval"
+          minimum-approvals: 1
+          approvers: ackresponse-ar,GurungDev # GitHub username of the approver
 
       - name: Push Docker Image
-        # if: success() # only push if Trivy scan passed
+        if: env.scan_status == "success" || ( env.scan_status == "failure" && success() )
         uses: docker/build-push-action@v6
         with:
           context: .
