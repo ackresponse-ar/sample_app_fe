@@ -5,6 +5,10 @@ on:
     branches:
       - trivy-test
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -107,7 +111,7 @@ jobs:
         with:
           secret: ${{github.TOKEN }}
           minimum-approvals: 1
-          approvers: ackresponse-ar,GurungDev # GitHub username of the approver
+          approvers: GurungDev # GitHub username of the approver
           issue-title: "Manual Approval Required: Trivy Scan Results"
           issue-body: |
             Trivy scan results for the Docker image `ackresponse/sample-app-fe:1.9`:
