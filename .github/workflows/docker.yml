@@ -105,17 +105,27 @@ jobs:
             "| \(.Severity) | \(.PkgName) | \(.InstalledVersion) | \(.VulnerabilityID) | \(.PrimaryURL) |"
           ' trivy-result.json >> trivy-report.md
 
+      - name: Read Trivy Markdown Report
+        if: env.scan_status == 'failure'
+        id: read-md
+        run: |
+          REPORT_CONTENT="$(cat trivy-report.md)"
+          echo "report<<EOF" >> $GITHUB_ENV
+          echo "$REPORT_CONTENT" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
       - name: Await for manual approval
         if: env.scan_status == 'failure' # only create issue if Trivy scan failed
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{github.TOKEN }}
           minimum-approvals: 1
-          approvers: GurungDev # GitHub username of the approver
+          approvers: GurungDev,PratikPommeGrg # GitHub username of the approver
           issue-title: "Manual Approval Required: Trivy Scan Results"
           issue-body: |
-            Trivy scan results for the Docker image `ackresponse/sample-app-fe:1.9`:
-            $(cat trivy-report.md)
+            ## 🚨 Trivy Scan Results for `ackresponse/sample-app-fe:1.9`
+            ### 📊 Vulnerability Summary  
+            ${{ env.report }}
             👉 Full JSON report is available in workflow logs.
 
       - name: Push Docker Image
