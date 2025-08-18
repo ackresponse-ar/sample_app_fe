@@ -106,16 +106,13 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{github.TOKEN }}
-          title: "Trivy Scan Results"
-          summary: "Vulnerabilities found in the scan. Please review before proceeding."
+          minimum-approvals: 1
+          approvers: ackresponse-ar,GurungDev # GitHub username of the approver
           issue-title: "Manual Approval Required: Trivy Scan Results"
           issue-body: |
             Trivy scan results for the Docker image `ackresponse/sample-app-fe:1.9`:
             $(cat trivy-report.md)
             👉 Full JSON report is available in workflow logs.
-          labels: "trivy, scan, manual-approval"
-          minimum-approvals: 1
-          approvers: ackresponse-ar,GurungDev # GitHub username of the approver
 
       - name: Push Docker Image
         if: env.scan_status == 'success' || ( env.scan_status == 'failure' && success() )
