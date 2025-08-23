@@ -38,18 +38,18 @@ const LandingPage = () => {
             <section className="my-6">
               <div className="mb-6">
                 <h1 className="text-[24px] text-white md:text-[28px] lg:text-[32px] xl:text-[36px] 2xl:text-[40px] font-extrabold leading-[1.2] mb-4 drop-shadow-lg tracking-wide">
-                  🎉 Namaste, Welcome to Nepali Mela 2025, UK test test 1232322wdfsdf 🎉
+                  🎉 Namaste, Welcome to Nepali Mela 2025, UK 🎉
                 </h1>
                 <div className="w-20 h-1 animate-gradient-shift rounded-full mb-4"></div>
               </div>
               
               <h2 className="text-[18px] text-white md:text-[22px] lg:text-[24px] xl:text-[26px] font-bold leading-[1.3] mb-5 drop-shadow-lg tracking-wide">
-                Celebrating Nepali Culture in the Heart of the UK
+                Celebrating Nepali Culture in the Heart of the UK.
               </h2>
               
               <div className="space-y-4 mb-6">
                 <p className="text-[16px] md:text-[17px] lg:text-[18px] text-white leading-[1.6] drop-shadow-lg font-medium">
-                  At <span className="font-bold text-red-200 text-[17px] md:text-[18px] lg:text-[19px]">AckResponse</span>, we're proud to be part of the Nepali Mela UK,
+                  At <span className="font-bold text-red-200 text-[17px] md:text-[18px] lg:text-[19px]">ackResponse</span>, we're proud to be part of the Nepali Mela UK,
                   showcasing our innovative technology solutions and digital transformation expertise.
                 </p>
                 
