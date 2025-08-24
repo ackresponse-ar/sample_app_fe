@@ -38,7 +38,7 @@ const LandingPage = () => {
             <section className="my-6">
               <div className="mb-6">
                 <h1 className="text-[24px] text-white md:text-[28px] lg:text-[32px] xl:text-[36px] 2xl:text-[40px] font-extrabold leading-[1.2] mb-4 drop-shadow-lg tracking-wide">
-                  🎉 Namaste, Welcome to Nepali Mela 2025, UK 🎉
+                  🎉 Namaste, Welcome to Nepali Mela 2025, UK. Hope you all have a great day. Thank you! 🎉
                 </h1>
                 <div className="w-20 h-1 animate-gradient-shift rounded-full mb-4"></div>
               </div>
