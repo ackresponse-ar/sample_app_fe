@@ -5,7 +5,7 @@ import ExperienceSilder from '@/components/sliders/ExperienceSilder'
 import Info from '@/components/Info'
 import LatestNews from '@/components/LatestNews'
 import ImageComp from '@/components/ImageComp'
-import HeroSection from '@/components/HeroSection copy'
+import HeroSection from '@/components/heroSection'
 
 export default function Home() {
   return (

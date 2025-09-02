@@ -1,123 +1,245 @@
-"use client";
-import { CallBackend } from "@/service/backend-call";
-import toast from "react-hot-toast";
-import { IoMdArrowForward } from "react-icons/io";
+"use client"
 
-const LandingPage = () => {
+import React, { useState } from "react";
+import FlightSearchModal from "./FlightSearchModal";
+
+const HeroSection = () => {
+  const [tripType, setTripType] = useState('round-trip');
+  const [origin, setOrigin] = useState('LHR');
+  const [destination, setDestination] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSwap = () => {
+    const temp = origin;
+    setOrigin(destination);
+    setDestination(temp);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
   return (
-    <div className="min-h-[100dvh] py-14 relative overflow-hidden">
-      {/* Animated background with zoom effect */}
-      <div
-        className="absolute inset-0 animate-background-zoom"
-        style={{
-          backgroundImage: "url('/bg.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed"
-        }}
-      ></div>
+    <div className="relative w-full">
+      {/* Background Image */}
+      <div className="relative h-[60vh] w-full overflow-hidden">
+        <video
+          src="/himalayajet-video-for-website-4.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ width: '100%', height: '100%' }}
+        />
 
-      {/* Floating decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-4 h-4 bg-red-400 rounded-full animate-float opacity-60"></div>
-        <div className="absolute top-40 right-20 w-3 h-3 bg-orange-400 rounded-full animate-float opacity-60" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-40 left-20 w-5 h-5 bg-yellow-400 rounded-full animate-float opacity-60" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-60 left-1/3 w-2 h-2 bg-red-300 rounded-full animate-float opacity-60" style={{ animationDelay: '0.5s' }}></div>
-        <div className="absolute bottom-60 right-1/3 w-4 h-4 bg-orange-300 rounded-full animate-float opacity-60" style={{ animationDelay: '1.5s' }}></div>
-      </div>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/30"></div>
 
-      {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div className="relative z-20 flex flex-col items-start justify-center h-full text-white px-4 w app-layout m-auto">
+          <div className="">
+            <div className="">
+              <h1 className="text-4xl md:text-4xl font-[400] text-white drop-shadow-lg">
+                Experience with Himalaya Jet
+              </h1>
+              <p className="text-base font-[700] text-white drop-shadow-lg">
+                Book your flight to the Himalayas with Himalaya Jet
+              </p>
 
-      <div className="flex flex-col min-[1100px]:flex-row items-center justify-center w-full relative z-10">
-        <div className="order-2 min-[1100px]:order-1 min-[1100px]:w-[60%] min-[1100px]:pl-5">
-          <div className="app-layout">
-            <section className="my-6">
-              <div className="mb-6">
-                <h1 className="text-[24px] text-white md:text-[28px] lg:text-[32px] xl:text-[36px] 2xl:text-[40px] font-extrabold leading-[1.2] mb-4 drop-shadow-lg tracking-wide">
-                  🎉 Namaste, Welcome to Nepali Mela 2025, UK. Hope you all have a great day. Thank you! 🎉
-                </h1>
-                <div className="w-20 h-1 animate-gradient-shift rounded-full mb-4"></div>
+              <div className="group cursor-pointer">
+                <span className="relative inline-block pt-4 pb-2 font-semibold text-white text-lg hover:text-white/80 transition-colors duration-300">
+                  Book Now
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-400 rounded-full"></span>
+                </span>
               </div>
-              
-              <h2 className="text-[18px] text-white md:text-[22px] lg:text-[24px] xl:text-[26px] font-bold leading-[1.3] mb-5 drop-shadow-lg tracking-wide">
-                Celebrating Nepali Culture in the Heart of the UK.
-              </h2>
-              
-              <div className="space-y-4 mb-6">
-                <p className="text-[16px] md:text-[17px] lg:text-[18px] text-white leading-[1.6] drop-shadow-lg font-medium">
-                  At <span className="font-bold text-red-200 text-[17px] md:text-[18px] lg:text-[19px]">ackResponse</span>, we&apos;re proud to be part of the Nepali Mela UK,
-                  showcasing our innovative technology solutions and digital transformation expertise.
-                </p>
-                
-                <p className="text-[16px] md:text-[17px] lg:text-[18px] text-white leading-[1.6] drop-shadow-lg font-medium">
-                  As a leading technology company founded by <span className="font-semibold text-orange-200 text-[17px] md:text-[18px] lg:text-[19px]">Nepali entrepreneurs</span>,
-                  we bridge traditional values with cutting-edge innovation.
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                <div className="bg-white bg-opacity-95 backdrop-blur-sm p-3 rounded-lg shadow-lg border-l-4 border-red-500 hover-zoom smooth-transition">
-                  <h3 className="font-bold text-red-600 mb-2 text-[14px] md:text-[15px] leading-[1.4]">🏪 Nepali Stalls</h3>
-                  <p className="text-[12px] md:text-[13px] text-gray-700 leading-[1.5] font-medium">Authentic food, crafts, and products from Nepali entrepreneurs</p>
-                </div>
-                <div className="bg-white bg-opacity-95 backdrop-blur-sm p-3 rounded-lg shadow-lg border-l-4 border-orange-500 hover-zoom smooth-transition">
-                  <h3 className="font-bold text-orange-600 mb-2 text-[14px] md:text-[15px] leading-[1.4]">🍜 Food Festival</h3>
-                  <p className="text-[12px] md:text-[13px] text-gray-700 leading-[1.5] font-medium">Taste traditional Nepali dishes and street food</p>
-                </div>
-                <div className="bg-white bg-opacity-95 backdrop-blur-sm p-3 rounded-lg shadow-lg border-l-4 border-blue-500 hover-zoom smooth-transition">
-                  <h3 className="font-bold text-blue-600 mb-2 text-[14px] md:text-[15px] leading-[1.4]">💻 AckResponse Tech</h3>
-                  <p className="text-[12px] md:text-[13px] text-gray-700 leading-[1.5] font-medium">Innovative cloud solutions and digital transformation</p>
-                </div>
-                <div className="bg-white bg-opacity-95 backdrop-blur-sm p-3 rounded-lg shadow-lg border-l-4 border-green-500 hover-zoom smooth-transition">
-                  <h3 className="font-bold text-green-600 mb-2 text-[14px] md:text-[15px] leading-[1.4]">🎭 Live Performances</h3>
-                  <p className="text-[12px] md:text-[13px] text-gray-700 leading-[1.5] font-medium">Traditional music, dance, and cultural shows</p>
-                </div>
-              </div>
-            </section>
-            
-            <button
-              onClick={async () => {
-                try {
-                  const data = await CallBackend();
-                  toast.success(data)
-                } catch (error) {
-                  console.error('Backend call failed:', error);
-                  toast.error('Error occurred while calling backend');
-
-                }
-              }}
-              className="bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold flex gap-3 group items-center my-5 px-10 py-3 rounded-xl duration-300 hover:px-14 hover:shadow-lg transform hover:scale-105 shadow-lg animate-pulse-glow text-[16px] md:text-[17px] tracking-wide"
-            >
-              View Message From Backend
-              <IoMdArrowForward
-                size={20}
-                className="group-hover:-rotate-180 transform transition-transform duration-300"
-              />
-            </button>
-            
-            <p className="caption min-[1100px]:w-[80%] py-5 min-[1900px]:mt-20 text-white drop-shadow-lg text-[15px] md:text-[16px] leading-[1.6] font-medium">
-              <span className="font-bold text-red-200 animate-pulse-glow text-[16px] md:text-[17px]">Namaste! 🙏</span>{" "}
-              We offer comprehensive <span className=" text-blue-200 ">cloud solutions</span>,
-              <span className=" text-green-200 "> DevOps automation</span>, and
-              <span className=" text-yellow-200 "> modern application development </span>
-               services to businesses worldwide.
-            </p>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Animated decorative section */}
-        <div className="w-[60%] mt-10 min-[1100px]:w-[30%] min-[1900px]:w-[30%] order-1 min-[1100px]:order-2 relative">
+      {/* Desktop: Floating Search/Booking Card */}
+      <div className="hidden lg:block   ">
+        <div className="absolute left-1/2 min-[950px]:bottom-[-3rem] bottom-[-10rem] transform rounded-2xl -translate-x-1/2 z-20   app-layout m-auto bg-white py-10 px-6">
+          {/* Trip Type Selection */}
+          <div className="flex mb-6 bg-white/80 backdrop-blur-xl rounded-full w-[40%] min-w-[400px] border border-white/20 shadow-lg p-1 absolute left-1/2 top-[-15%] transform -translate-x-1/2">
+            {['round-trip', 'one-way', 'multi-city'].map((type) => (
+              <button
+                key={type}
+                onClick={() => setTripType(type)}
+                className={`flex-1 py-2 px-4 rounded-full text-sm font-medium transition-all ${tripType === type
+                  ? 'bg-amber-600 text-white shadow-sm'
+                  : 'text-gray-800 hover:text-yellow-600 hover:bg-white/50'
+                  }`}
+              >
+                {type === 'round-trip' ? 'Round trip' :
+                  type === 'one-way' ? 'One-way' : 'Multi-city'}
+              </button>
+            ))}
+          </div>
 
+          {/* Flight Search Fields */}
+          <div className="flex flex-col lg:flex-row items-center gap-4">
+            {/* Origin Field */}
+            <div className="flex-1 w-full">
+              <div
+                className="bg-neutral-100 border border-gray/20 rounded-xl p-4 hover:border-yellow-400/50 transition-all cursor-pointer"
+                onClick={openModal}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-2xl font-bold text-gray-500">{origin}</div>
+                    <div className="text-sm text-gray-800">London</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          {/* Floating decorative elements around the animation */}
-          <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-red-400 to-orange-400 rounded-full animate-float opacity-80"></div>
-          <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full animate-float opacity-80" style={{ animationDelay: '1s' }}></div>
+            {/* Swap Button */}
+            <div className="flex flex-col items-center">
+              <button
+                onClick={handleSwap}
+                className="w-10 h-10 glass-light rounded-full flex items-center justify-center hover:bg-white/20 transition-all border border-white/20"
+              >
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Destination Field */}
+            <div className="flex-1 w-full">
+              <div
+                className="bg-neutral-100 border border-gray/20 rounded-xl p-4 hover:border-yellow-400/50 transition-all cursor-pointer"
+                onClick={openModal}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-2xl font-bold text-gray-500">
+                      {destination || 'To'}
+                    </div>
+                    <div className="text-sm text-gray-800">
+                      {destination ? 'Destination' : 'Select your destination'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Mobile: Stacked Flight Search Section */}
+      <div className="lg:hidden w-full px-4 py-8">
+        <div className="max-w-6xl mx-auto">
+          {/* Trip Type Selection */}
+          <div className="flex mb-6 bg-white/80 backdrop-blur-xl rounded-full w-full max-w-md mx-auto border border-white/20 shadow-lg p-1">
+            {['round-trip', 'one-way', 'multi-city'].map((type) => (
+              <button
+                key={type}
+                onClick={() => setTripType(type)}
+                className={`flex-1 py-2 px-4 rounded-full text-sm font-medium transition-all ${tripType === type
+                  ? 'bg-amber-600 text-white shadow-sm'
+                  : 'text-gray-800 hover:text-yellow-600 hover:bg-white/50'
+                  }`}
+              >
+                {type === 'round-trip' ? 'Round trip' :
+                  type === 'one-way' ? 'One-way' : 'Multi-city'}
+              </button>
+            ))}
+          </div>
+
+          {/* Flight Search Fields */}
+          <div className="flex flex-col items-center gap-4">
+            {/* Origin Field */}
+            <div className="w-full">
+              <div
+                className="glass-light border border-white/20 rounded-xl p-4 hover:border-yellow-400/50 transition-all cursor-pointer"
+                onClick={openModal}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-2xl font-bold text-white">{origin}</div>
+                    <div className="text-sm text-gray-300">London</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Swap Button */}
+            <div className="flex flex-col items-center">
+              <button
+                onClick={handleSwap}
+                className="w-10 h-10 glass-light rounded-full flex items-center justify-center hover:bg-white/20 transition-all border border-white/20"
+              >
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Destination Field */}
+            <div className="w-full">
+              <div
+                className="glass-light border border-white/20 rounded-xl p-4 hover:border-yellow-400/50 transition-all cursor-pointer"
+                onClick={openModal}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-2xl font-bold text-white">
+                      {destination || 'To'}
+                    </div>
+                    <div className="text-sm text-gray-300">
+                      {destination ? 'Destination' : 'Select your destination'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Search Button */}
+            <div className="mt-6 w-full text-center">
+              <button
+                onClick={openModal}
+                className="w-full px-8 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-all font-semibold shadow-lg"
+              >
+                Search Flights
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Flight Search Modal */}
+      <FlightSearchModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };
 
-export default LandingPage;
+export default HeroSection;
