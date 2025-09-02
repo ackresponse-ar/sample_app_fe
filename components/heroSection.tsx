@@ -1,9 +1,7 @@
 "use client";
-import animation from "@/animations/h1.json";
 import { CallBackend } from "@/service/backend-call";
 import toast from "react-hot-toast";
 import { IoMdArrowForward } from "react-icons/io";
-import Lottie from "react-lottie-player";
 
 const LandingPage = () => {
   return (
@@ -49,7 +47,7 @@ const LandingPage = () => {
               
               <div className="space-y-4 mb-6">
                 <p className="text-[16px] md:text-[17px] lg:text-[18px] text-white leading-[1.6] drop-shadow-lg font-medium">
-                  At <span className="font-bold text-red-200 text-[17px] md:text-[18px] lg:text-[19px]">ackResponse</span>, we're proud to be part of the Nepali Mela UK,
+                  At <span className="font-bold text-red-200 text-[17px] md:text-[18px] lg:text-[19px]">ackResponse</span>, we&apos;re proud to be part of the Nepali Mela UK,
                   showcasing our innovative technology solutions and digital transformation expertise.
                 </p>
                 
@@ -85,6 +83,7 @@ const LandingPage = () => {
                   const data = await CallBackend();
                   toast.success(data)
                 } catch (error) {
+                  console.error('Backend call failed:', error);
                   toast.error('Error occurred while calling backend');
 
                 }
