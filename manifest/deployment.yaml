@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: sample-app-fe
-        image: docker.io/ackresponse/sample-app-fe:2.1
+        image: docker.io/ackresponse/sample-app-fe:2.2
         ports:
         - containerPort: 3000
