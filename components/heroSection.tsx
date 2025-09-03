@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import FlightSearchModal from "./FlightSearchModal";
+import Image from "next/image";
 
 const HeroSection = () => {
   const [tripType, setTripType] = useState('round-trip');
@@ -34,10 +35,53 @@ const HeroSection = () => {
         />
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="absolute inset-0 bg-black/30  "></div>
 
         <div className="relative z-20 flex flex-col items-start justify-center h-full text-white px-4 w app-layout m-auto">
-          <div className="">
+          {/* Header with icons */}
+          <div className="absolute top-4 left-4 z-30 md:hidden block">
+            {/* Himalaya Jet Logo */}
+            <div className="flex items-center">
+              <Image 
+                src="/small-Himalaya-Logo.png" 
+                alt="Himalaya Jet" 
+                width={120} 
+                height={40}
+                className="object-contain"
+              />
+            </div>
+          </div>
+          
+          <div className="absolute top-4 right-4 flex gap-3 items-center z-30 hidden md:flex">
+            {/* Left side - Region/Language selector */}
+            <div className="flex items-center bg-gray-800/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/20">
+              {/* UK Flag */}
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-red-500 via-white to-blue-600 flex items-center justify-center mr-2">
+                <Image src="/GB.svg" alt="UK" width={24} height={24} />
+              </div>
+              {/* Country code */}
+              <span className="text-white font-bold text-sm mr-1">GB</span>
+              {/* Dropdown arrow */}
+              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+              {/* Separator */}
+              <div className="w-px h-4 bg-white/30 mx-2"></div>
+              {/* Search icon */}
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+
+            {/* Right side - User profile */}
+            <div className="bg-gray-800/80 backdrop-blur-sm rounded-full p-2 border border-white/20">
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+          </div>
+
+          <div className=" text-center md:text-left m-auto md:m-0">
             <div className="">
               <h1 className="text-4xl md:text-4xl font-[400] text-white drop-shadow-lg">
                 Experience with Himalaya Jet
