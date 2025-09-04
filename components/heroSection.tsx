@@ -25,7 +25,7 @@ const HeroSection = () => {
       {/* Background Image */}
       <div className="relative h-[60vh] w-full overflow-hidden">
         <video
-          src="/nepal-himalaya.mp4"
+          src="/np-himalaya.mp4"
           autoPlay
           loop
           muted
