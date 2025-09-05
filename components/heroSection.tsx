@@ -35,7 +35,7 @@ const HeroSection = () => {
         />
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/30  "></div>
+        <div className="absolute inset-0 bg-black/10  "></div>
 
         <div className="relative z-20 flex flex-col items-start justify-center h-full text-white px-4 w app-layout m-auto">
           {/* Header with icons */}
