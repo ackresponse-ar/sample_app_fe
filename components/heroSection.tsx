@@ -86,7 +86,7 @@ const HeroSection = () => {
               <h1 className="text-4xl md:text-4xl font-[400] text-white drop-shadow-lg">
                 Experience with Himalaya Jet
               </h1>
-              <p className="text-base font-[700] text-white drop-shadow-lg">
+              <p className="hidden md:block text-base font-[700] text-white drop-shadow-lg">
                 Book your flight to the Himalayas with Himalaya Jet
               </p>
 
