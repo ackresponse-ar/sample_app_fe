@@ -23,19 +23,19 @@ const HeroSection = () => {
   return (
     <div className="relative w-full">
       {/* Background Image */}
-      <div className="relative h-[60vh] w-full overflow-hidden">
+      <div className="relative h-[100vh] w-full overflow-hidden">
         <video
-          src="/np-hj-vid.mp4"
+          src="/np-hj.mp4"
           autoPlay
           loop
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover object-center"
-          style={{ width: '100%', height: '120%' }}
+          style={{ width: '100%', height: '100%' }}
         />
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/10  "></div>
+        <div className="absolute inset-0 bg-black/50  "></div>
 
         <div className="relative z-20 flex flex-col items-start justify-center h-full text-white px-4 w app-layout m-auto">
           {/* Header with icons */}
@@ -83,15 +83,15 @@ const HeroSection = () => {
 
           <div className=" text-center md:text-left m-auto md:m-0">
             <div className="">
-              <h1 className="text-4xl md:text-4xl font-[400] text-white drop-shadow-lg">
-                Experience with Himalaya Jet
+              <h1 className="text-6xl md:text-6xl font-[800] text-white drop-shadow-lg">
+                Experience with Himalaya Jet.
               </h1>
-              <p className="hidden md:block text-base font-[700] text-white drop-shadow-lg">
+              <p className="hidden md:block text-2xl font-[400] text-white drop-shadow-lg">
                 Book your flight to the Himalayas with Himalaya Jet
               </p>
 
               <div className="group cursor-pointer">
-                <span className="relative inline-block pt-4 pb-2 font-semibold text-white text-lg hover:text-white/80 transition-colors duration-300">
+                <span className="relative inline-block pt-10 pb-2 font-semibold text-white text-lg hover:text-white/80 transition-colors duration-300">
                   Book Now
                   <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-400 rounded-full"></span>
                 </span>
@@ -101,7 +101,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Desktop: Floating Search/Booking Card */}
       <div className="hidden lg:block   ">
         <div className="absolute left-1/2 min-[950px]:bottom-[-3rem] bottom-[-10rem] transform rounded-2xl -translate-x-1/2 z-20   app-layout m-auto bg-white py-10 px-6">
           {/* Trip Type Selection */}
