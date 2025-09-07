@@ -25,7 +25,7 @@ const HeroSection = () => {
       {/* Background Image */}
       <div className="relative h-[100vh] w-full overflow-hidden">
         <video
-          src="/np-hj.mp4"
+          src="/hj-vid-new.mp4"
           autoPlay
           loop
           muted
@@ -35,7 +35,7 @@ const HeroSection = () => {
         />
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/50  "></div>
+        <div className="absolute inset-0 bg-black/0  "></div>
 
         <div className="relative z-20 flex flex-col items-start justify-center h-full text-white px-4 w app-layout m-auto">
           {/* Header with icons */}
@@ -101,9 +101,9 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="hidden lg:block   ">
+      {/* <div className="hidden lg:block   ">
         <div className="absolute left-1/2 min-[950px]:bottom-[-3rem] bottom-[-10rem] transform rounded-2xl -translate-x-1/2 z-20   app-layout m-auto bg-white py-10 px-6">
-          {/* Trip Type Selection */}
+          
           <div className="flex mb-6 bg-white/80 backdrop-blur-xl rounded-full w-[40%] min-w-[400px] border border-white/20 shadow-lg p-1 absolute left-1/2 top-[-15%] transform -translate-x-1/2">
             {['round-trip', 'one-way', 'multi-city'].map((type) => (
               <button
@@ -120,9 +120,9 @@ const HeroSection = () => {
             ))}
           </div>
 
-          {/* Flight Search Fields */}
+          
           <div className="flex flex-col lg:flex-row items-center gap-4">
-            {/* Origin Field */}
+            
             <div className="flex-1 w-full">
               <div
                 className="bg-neutral-100 border border-gray/20 rounded-xl p-4 hover:border-yellow-400/50 transition-all cursor-pointer"
@@ -143,7 +143,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Swap Button */}
+      
             <div className="flex flex-col items-center">
               <button
                 onClick={handleSwap}
@@ -155,7 +155,7 @@ const HeroSection = () => {
               </button>
             </div>
 
-            {/* Destination Field */}
+            
             <div className="flex-1 w-full">
               <div
                 className="bg-neutral-100 border border-gray/20 rounded-xl p-4 hover:border-yellow-400/50 transition-all cursor-pointer"
@@ -181,7 +181,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Mobile: Stacked Flight Search Section */}
       <div className="lg:hidden w-full px-4 py-8">
