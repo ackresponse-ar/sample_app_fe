@@ -6,8 +6,8 @@ import Image from "next/image";
 
 const HeroSection = () => {
   // const [tripType, setTripType] = useState('round-trip');
-  const [origin, setOrigin] = useState('LHR');
-  const [destination, setDestination] = useState('');
+  // const [origin, setOrigin] = useState('LHR');
+  // const [destination, setDestination] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // const handleSwap = () => {
