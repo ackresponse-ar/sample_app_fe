@@ -5,20 +5,20 @@ import FlightSearchModal from "./FlightSearchModal";
 import Image from "next/image";
 
 const HeroSection = () => {
-  const [tripType, setTripType] = useState('round-trip');
+  // const [tripType, setTripType] = useState('round-trip');
   const [origin, setOrigin] = useState('LHR');
   const [destination, setDestination] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSwap = () => {
-    const temp = origin;
-    setOrigin(destination);
-    setDestination(temp);
-  };
+  // const handleSwap = () => {
+  //   const temp = origin;
+  //   setOrigin(destination);
+  //   setDestination(temp);
+  // };
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
 
   return (
     <div className="relative w-full">
