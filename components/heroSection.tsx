@@ -92,7 +92,7 @@ const HeroSection = () => {
 
               <div className="group cursor-pointer">
                 <span className="relative inline-block pt-10 pb-2 font-semibold text-white text-lg hover:text-white/80 transition-colors duration-300">
-                  Bookings coming soon!
+                  Bookings opening soon.
                   <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-400 rounded-full"></span>
                 </span>
               </div>
