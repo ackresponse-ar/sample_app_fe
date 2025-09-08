@@ -92,7 +92,7 @@ const HeroSection = () => {
 
               <div className="group cursor-pointer">
                 <span className="relative inline-block pt-10 pb-2 font-semibold text-white text-lg hover:text-white/80 transition-colors duration-300">
-                  Book Now
+                  Bookings coming soon!
                   <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-400 rounded-full"></span>
                 </span>
               </div>
@@ -184,9 +184,9 @@ const HeroSection = () => {
       </div> */}
 
       {/* Mobile: Stacked Flight Search Section */}
-      <div className="lg:hidden w-full px-4 py-8">
+      {/* <div className="lg:hidden w-full px-4 py-8">
         <div className="max-w-6xl mx-auto">
-          {/* Trip Type Selection */}
+          
           <div className="flex mb-6 bg-white/80 backdrop-blur-xl rounded-full w-full max-w-md mx-auto border border-white/20 shadow-lg p-1">
             {['round-trip', 'one-way', 'multi-city'].map((type) => (
               <button
@@ -203,9 +203,9 @@ const HeroSection = () => {
             ))}
           </div>
 
-          {/* Flight Search Fields */}
+          
           <div className="flex flex-col items-center gap-4">
-            {/* Origin Field */}
+            
             <div className="w-full">
               <div
                 className="glass-light border border-white/20 rounded-xl p-4 hover:border-yellow-400/50 transition-all cursor-pointer"
@@ -226,7 +226,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Swap Button */}
+            
             <div className="flex flex-col items-center">
               <button
                 onClick={handleSwap}
@@ -238,7 +238,7 @@ const HeroSection = () => {
               </button>
             </div>
 
-            {/* Destination Field */}
+            
             <div className="w-full">
               <div
                 className="glass-light border border-white/20 rounded-xl p-4 hover:border-yellow-400/50 transition-all cursor-pointer"
@@ -263,7 +263,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Search Button */}
+           
             <div className="mt-6 w-full text-center">
               <button
                 onClick={openModal}
@@ -274,7 +274,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Flight Search Modal */}
       <FlightSearchModal
