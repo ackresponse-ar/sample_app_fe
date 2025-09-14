@@ -136,7 +136,7 @@ export default function Footer() {
           </div>
 
           {/* Newsletter signup */}
-          <div className="border-t border-white/10 mt-8 pt-8">
+          {/* <div className="border-t border-white/10 mt-8 pt-8">
             <div className="md:max-w-md">
               <h4 className="font-semibold mb-3 text-white">Stay updated</h4>
               <p className="text-sm text-gray-300 mb-4">
@@ -153,7 +153,7 @@ export default function Footer() {
                 </button>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Bottom footer */}
           <div className="border-t border-white/10 mt-8 pt-8 pb-8">

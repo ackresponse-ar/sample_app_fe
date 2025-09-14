@@ -87,7 +87,7 @@ const HeroSection = () => {
                 Experience Nepal with Himalaya Jet.
               </h1>
               <p className="hidden md:block text-2xl font-[400] text-white drop-shadow-lg">
-                Book your flight to the Himalayas with Himalaya Jet
+                Direct Flights to Motherland Nepal from UK, Europe & Australia
               </p>
 
               <div className="group cursor-pointer">
