@@ -23,7 +23,7 @@ const HeroSection = () => {
   return (
     <div className="relative w-full">
       {/* Background Image */}
-      <div className="relative h-[100vh] w-full overflow-hidden">
+      <div className="relative h-[75vh] w-full overflow-hidden">
         <video
           src="/hj-pkr.mp4"
           autoPlay
