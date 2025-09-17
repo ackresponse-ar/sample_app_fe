@@ -23,9 +23,9 @@ const HeroSection = () => {
   return (
     <div className="relative w-full">
       {/* Background Image */}
-      <div className="relative h-[75vh] w-full overflow-hidden">
+      <div className="relative h-[100vh] w-full overflow-hidden">
         <video
-          src="/hj-pkr.mp4"
+          src="/hj-final-vid.mp4"
           autoPlay
           loop
           muted
@@ -81,7 +81,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className=" text-center md:text-left m-auto md:m-0">
+          {/* <div className=" text-center md:text-left m-auto md:m-0">
             <div className="">
               <h1 className="text-6xl md:text-6xl font-[800] text-white drop-shadow-lg">
                 Experience Nepal with Himalaya Jet.
@@ -97,7 +97,7 @@ const HeroSection = () => {
                 </span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
