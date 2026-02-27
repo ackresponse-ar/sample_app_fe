@@ -1,0 +1,15 @@
+# Create the Cloud Armor policy in GCP first (see docs/cloud-armor-rate-limiting.md), then set spec.default.securityPolicy to its name and apply this file.
+#
+# Apply (after creating the policy): kubectl apply -f manifest/backend-policy-cloud-armor.yaml
+apiVersion: networking.gke.io/v1
+kind: GCPBackendPolicy
+metadata:
+  name: sample-app-fe-cloud-armor
+  namespace: default
+spec:
+  default:
+    securityPolicy: sample-app-fe-rate-limit-policy
+  targetRef:
+    group: net.gke.io
+    kind: ServiceImport
+    name: sample-app-fe-service

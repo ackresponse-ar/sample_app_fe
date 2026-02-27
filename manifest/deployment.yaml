@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sample-app-fe
-  namespace: argocd
   labels:
     app: sample-app-fe
 spec:
@@ -17,6 +16,7 @@ spec:
     spec:
       containers:
       - name: sample-app-fe
-        image: docker.io/ackresponse/sample-app-fe:2.2
+        image: docker.io/ackresponse/sample-app-fe:2.5
         ports:
         - containerPort: 3000
+ 
